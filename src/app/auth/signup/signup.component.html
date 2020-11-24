@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h3 class="mt-5">Create an account</h3>
+        <form (ngSubmit)="onSubmit()" [formGroup]="authForm">
+            <app-input inputType="text" label="Username" [control]="authForm.get('username')"></app-input>
+            <app-input inputType="password" label="Password" [control]="authForm.get('password')"></app-input>
+            <app-input inputType="password" label="Password Confirmation" [control]="authForm.get('passwordConfirmation')"></app-input>
+            <div *ngIf="authForm.get('password').touched && authForm.get('passwordConfirmation').touched && authForm.errors">
+                <p *ngIf="authForm.errors.passwordsDontMatch" class="text-danger">
+                    Password and Password Confirmation must match
+                </p>
+                <p *ngIf="authForm.errors.noConnection" class="text-danger">
+                    No internet connection, please try to signup later
+                </p>
+                <p *ngIf="authForm.errors.unknownError" class="text-danger">
+                    Failed to signup
+                </p>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

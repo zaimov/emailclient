@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h3 class="mt-5">Signin</h3>
+        <form  (submit)="onSubmit()" [formGroup]="authForm">
+            <app-input inputType="text" label="Username" [control]="authForm.get('username')"></app-input>
+            <app-input inputType="password" label="Password" [control]="authForm.get('password')"></app-input>
+            <div *ngIf="authForm.errors">
+                <p *ngIf="authForm.errors.credentials" class="text-danger">
+                    Invalid username or passowrd
+                </p>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</div>

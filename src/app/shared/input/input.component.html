@@ -1,0 +1,32 @@
+<div class="form-group">
+    <label for="{{ label }}">{{ label }}</label>
+    <input [type]="inputType" [formControl]="control" class="form-control" [ngClass]="showErrors() ? 'is-invalid' : ''" placeholder="{{ label }}">
+    <div *ngIf="showErrors()" class="invalid-feedback">
+        <ng-container *ngIf="control.errors.required">
+            Value is required
+        </ng-container>
+        <ng-container *ngIf="control.errors.minlength">
+            Value you entered is
+            {{ control.errors.minlength.actualLength }}
+            characters long, but it must be at least
+            {{ control.errors.minlength.requiredLength }}
+            characters
+        </ng-container>
+        <ng-container *ngIf="control.errors.maxlength">
+            Value you entered is
+            {{ control.errors.maxlength.actualLength }}
+            characters long, but it can't be longer than
+            {{ control.errors.maxlength.requiredLength }}
+            characters
+        </ng-container>
+        <ng-container *ngIf="control.errors.pattern">
+            Invalid format
+        </ng-container>
+        <ng-container *ngIf="control.errors.nonUniqueUsername">
+            Username is taken
+        </ng-container>
+        <ng-container *ngIf="control.errors.noConnection">
+            You have no internet connection, please try again later
+        </ng-container>
+    </div>
+</div>
