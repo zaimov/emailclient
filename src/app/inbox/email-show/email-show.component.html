@@ -1,1 +1,14 @@
-<p>email-show works!</p>
+<div class="row" *ngIf="email">
+  <div class="col-sm">
+    <div>
+      <h3>{{ email.subject }}</h3>
+    </div>
+    <div>
+      From: <i>{{ email.from }}</i>
+    </div>
+    <div>
+      To: <i>{{ email.to }}</i>
+    </div>
+    <div class="mt-4" [innerHtml]="email.html"></div>
+  </div>
+</div>
