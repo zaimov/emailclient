@@ -8,19 +8,12 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-  @Output() dismiss = new EventEmitter();
-  title = 'appBootstrap';
-  
+
   closeResult: string;
 
   constructor(private el: ElementRef, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    document.body.appendChild(this.el.nativeElement);
-  }
-
-  ngOnDestroy() {
-    this.el.nativeElement.remove();
   }
 
   open(content) {
@@ -30,7 +23,7 @@ export class ModalComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
