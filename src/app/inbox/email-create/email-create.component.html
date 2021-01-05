@@ -1,1 +1,11 @@
-<p>email-create works!</p>
+<div>
+  <app-modal>
+    <h5 class="modal-title" modalTitle>Compose</h5>
+    <div class="modal-body" modalBody>
+      <app-email-form [email]="email"></app-email-form>
+    </div>
+    <div class="modal-footer" modalFooter>
+    <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
+  </app-modal>
+</div>
