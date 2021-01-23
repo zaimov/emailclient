@@ -27,12 +27,17 @@ interface SigninCredentials {
   password: string;
 }
 
+interface SigninResponse {
+  username: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private baseUrl = 'https://api.angular-email.com';
   signedin$ = new BehaviorSubject(null);
+  username = '';
 
 
   constructor(private http: HttpClient) { }
@@ -46,24 +51,27 @@ export class AuthService {
   signup(credentials: SignupConfirmation) {
     return this.http.post<SignupResponse>(
       `${this.baseUrl}/auth/signup`, credentials).pipe(
-      tap(() => {
+      tap((response) => {
         this.signedin$.next(true);
+        this.username = response.username;
       })
     );
   }
 
   checkAuth() {
     return this.http.get<SignedinResponse>(`${this.baseUrl}/auth/signedin`).pipe(
-      tap(({ authenticated }) => {
+      tap(({ authenticated, username }) => {
         this.signedin$.next(authenticated);
+        this.username = username;
       })
     );
   }
 
   signein(credentials: SigninCredentials) {
-    return this.http.post(`${this.baseUrl}/auth/signin`, credentials).pipe(
-      tap(() => {
+    return this.http.post<SigninResponse>(`${this.baseUrl}/auth/signin`, credentials).pipe(
+      tap((response) => {
         this.signedin$.next(true);
+        this.username = response.username;
       })
     );
   }
