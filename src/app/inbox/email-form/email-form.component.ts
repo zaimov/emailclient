@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { EventEmitter } from 'events';
 import { Email } from '../email';
 
 @Component({
@@ -33,7 +32,6 @@ export class EmailFormComponent implements OnInit {
     }
 
     this.emailSubmit.emit(this.emailForm.value);
-
   }
 
 }

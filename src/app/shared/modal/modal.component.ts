@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, Output } from '@angular/core';
 import { EventEmitter } from 'events';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { EmailService } from 'src/app/inbox/email.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-modal',
@@ -11,9 +13,14 @@ export class ModalComponent implements OnInit {
 
   closeResult: string;
 
-  constructor(private el: ElementRef, private modalService: NgbModal) { }
+  private subscription: Subscription;
+
+  constructor(private el: ElementRef, private modalService: NgbModal, private emailService: EmailService) { }
 
   ngOnInit(): void {
+    this.subscription = this.emailService.closeModalObservable$.subscribe((res) => {
+        this.modalService.dismissAll(res);
+    });
   }
 
   open(content) {
