@@ -24,4 +24,8 @@ export class EmailCreateComponent implements OnInit {
     }
   }
 
+  onSubmit(email: Email) {
+
+  }
+
 }
