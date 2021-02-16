@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output } from '@angular/core';
 import { EventEmitter } from 'events';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { EmailService } from 'src/app/inbox/email.service';
@@ -14,6 +14,8 @@ export class ModalComponent implements OnInit {
   closeResult: string;
 
   private subscription: Subscription;
+
+  @Input() buttonText: string = '';
 
   constructor(private el: ElementRef, private modalService: NgbModal, private emailService: EmailService) { }
 

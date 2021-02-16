@@ -1,1 +1,14 @@
-<p>email-reply works!</p>
+<div>
+  <app-modal [buttonText]="replyButtonText">
+    <h5 class="modal-title" modalTitle>Reply</h5>
+    <div class="modal-body" modalBody>
+      <app-email-form
+        [email]="email"
+        (emailSubmit)="onSubmit($event)"
+        ></app-email-form>
+    </div>
+    <!-- <div class="modal-footer" modalFooter>
+    <button type="button" class="btn btn-primary">Save changes</button>
+    </div> -->
+  </app-modal>
+</div>

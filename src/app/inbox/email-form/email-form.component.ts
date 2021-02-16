@@ -7,7 +7,7 @@ import { Email } from '../email';
   templateUrl: './email-form.component.html',
   styleUrls: ['./email-form.component.css']
 })
-export class EmailFormComponent implements OnInit {
+export class EmailFormComponent {
   emailForm: FormGroup;
 
   @Input() email: Email;
@@ -15,7 +15,7 @@ export class EmailFormComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     const { subject, from, to, text } = this.email;
 
     this.emailForm = new FormGroup({

@@ -13,10 +13,16 @@ export class EmailCreateComponent implements OnInit {
 
   email: Email;
 
+  composeButtonText = 'Compose';
+
   constructor(private authService: AuthService, private emailService: EmailService) { }
 
   ngOnInit(): void {
-    this.email = {
+    this.email = this.resetEmail();
+  }
+
+  resetEmail() {
+    return {
       id: '',
       to: '',
       subject: '',
@@ -29,7 +35,7 @@ export class EmailCreateComponent implements OnInit {
   onSubmit(email: Email) {
     this.emailService.sendEmail(email).subscribe(() => {
       this.emailService.triggerCloseModal('Close Modal');
-      //TODO - clear the form
+      this.email = this.resetEmail();
     });
   }
 
